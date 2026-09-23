@@ -162,4 +162,4 @@ potines/
 
 ## Licencia
 
-Proyecto privado. Todos los derechos reservados por POTINES.
+Proyecto privado. Todos los derechos reservados por CERIX.
