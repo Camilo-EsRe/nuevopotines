@@ -4,17 +4,19 @@ import { AdminCombos } from './AdminCombos';
 import { AdminBebidas } from './AdminBebidas';
 import { AdminAdiciones } from './AdminAdiciones';
 import { AdminSalsas } from './AdminSalsas';
+import { AdminDomicilios } from './AdminDomicilios';
 import { AdminLogin } from './AdminLogin';
-import { LogOut, Loader2, UtensilsCrossed, CupSoda, Plus, Droplet } from 'lucide-react';
+import { LogOut, Loader2, UtensilsCrossed, CupSoda, Plus, Droplet, Truck } from 'lucide-react';
 import type { Session } from '@supabase/supabase-js';
 
-type Tab = 'combos' | 'bebidas' | 'adiciones' | 'salsas';
+type Tab = 'combos' | 'bebidas' | 'adiciones' | 'salsas' | 'domicilios';
 
 const TABS: { id: Tab; label: string; icon: typeof UtensilsCrossed }[] = [
   { id: 'combos', label: 'Combos', icon: UtensilsCrossed },
   { id: 'bebidas', label: 'Bebidas', icon: CupSoda },
   { id: 'adiciones', label: 'Adiciones', icon: Plus },
   { id: 'salsas', label: 'Salsas', icon: Droplet },
+  { id: 'domicilios', label: 'Domicilios', icon: Truck },
 ];
 
 export function AdminPanel() {
@@ -99,6 +101,7 @@ export function AdminPanel() {
         {tab === 'bebidas' && <AdminBebidas />}
         {tab === 'adiciones' && <AdminAdiciones />}
         {tab === 'salsas' && <AdminSalsas />}
+        {tab === 'domicilios' && <AdminDomicilios />}
       </div>
     </div>
   );
