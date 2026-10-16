@@ -1,4 +1,4 @@
-import { ADICIONES, formatCOP } from '@/data/menu';
+import { useMenu, formatCOP } from '@/context/MenuContext';
 import { useOrder } from '@/context/OrderContext';
 import { QuantityButton } from '@/components/QuantityButton';
 import { ProductImage } from '@/components/ProductImage';
@@ -9,6 +9,7 @@ interface AdicionSelectionProps {
 }
 
 export function AdicionSelection({ onNext, onBack }: AdicionSelectionProps) {
+  const { adiciones } = useMenu();
   const { adicionCounts, addAdicion, removeAdicion } = useOrder();
 
   return (
@@ -19,7 +20,7 @@ export function AdicionSelection({ onNext, onBack }: AdicionSelectionProps) {
       </div>
 
       <div className="space-y-3">
-        {ADICIONES.map((adic, i) => {
+        {adiciones.map((adic, i) => {
           const count = adicionCounts[adic.id] || 0;
           const selected = count > 0;
           return (

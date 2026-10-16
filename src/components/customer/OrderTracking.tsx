@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { useOrder } from '@/context/OrderContext';
 import { supabase } from '@/lib/supabase';
-import { formatCOP } from '@/data/menu';
+import { formatCOP } from '@/context/MenuContext';
 import {
   RotateCcw,
   CheckCircle2,

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { supabase } from '@/lib/supabase';
-import { formatCOP } from '@/data/menu';
+import { formatCOP } from '@/context/MenuContext';
 import type { PedidoConItems } from '@/types';
 import {
   Clock,

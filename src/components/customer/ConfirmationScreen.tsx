@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useOrder } from '@/context/OrderContext';
-import { formatCOP } from '@/data/menu';
+import { formatCOP } from '@/context/MenuContext';
 import { RotateCcw, CheckCircle2, Store, Clock } from 'lucide-react';
 
 interface ConfirmationScreenProps {

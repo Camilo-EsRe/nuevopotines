@@ -1,5 +1,5 @@
 import { useOrder } from '@/context/OrderContext';
-import { formatCOP, COMBOS, BEBIDAS, ADICIONES, SALSAS } from '@/data/menu';
+import { useMenu, formatCOP } from '@/context/MenuContext';
 import { ProductImage } from '@/components/ProductImage';
 import { Store } from 'lucide-react';
 
@@ -20,6 +20,7 @@ export function OrderSummary({ onNext, onBack }: OrderSummaryProps) {
     domicilioActual,
     total,
   } = useOrder();
+  const { combos, bebidas, adiciones, salsas } = useMenu();
 
   const isRecogida = tipoPedido === 'recogida';
 
@@ -39,12 +40,12 @@ export function OrderSummary({ onNext, onBack }: OrderSummaryProps) {
             </h3>
             <div className="space-y-2">
               {comboInstances.map((inst, i) => {
-                const combo = COMBOS.find((c) => c.id === inst.comboId);
+                const combo = combos.find((c) => c.id === inst.comboId);
                 if (!combo) return null;
                 const labelIndex =
                   comboInstances.filter((x, j) => x.comboId === inst.comboId && j <= i).length;
                 const salsaNames = inst.salsas
-                  .map((sid) => SALSAS.find((s) => s.id === sid)?.nombre)
+                  .map((sid) => salsas.find((s) => s.id === sid)?.nombre)
                   .filter(Boolean) as string[];
                 return (
                   <div
@@ -86,7 +87,7 @@ export function OrderSummary({ onNext, onBack }: OrderSummaryProps) {
               Bebidas
             </h3>
             <div className="space-y-2">
-              {BEBIDAS.filter((b) => (bebidaCounts[b.id] || 0) > 0).map((b) => (
+              {bebidas.filter((b) => (bebidaCounts[b.id] || 0) > 0).map((b) => (
                 <div
                   key={b.id}
                   className="flex justify-between items-center pb-2 border-b border-white/5"
@@ -119,7 +120,7 @@ export function OrderSummary({ onNext, onBack }: OrderSummaryProps) {
               Adiciones
             </h3>
             <div className="space-y-2">
-              {ADICIONES.filter((a) => (adicionCounts[a.id] || 0) > 0).map((a) => (
+              {adiciones.filter((a) => (adicionCounts[a.id] || 0) > 0).map((a) => (
                 <div
                   key={a.id}
                   className="flex justify-between items-center pb-2 border-b border-white/5"

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useOrder } from '@/context/OrderContext';
+import { useMenu, formatCOP } from '@/context/MenuContext';
 import { supabase } from '@/lib/supabase';
-import { formatCOP, COMBOS, BEBIDAS, ADICIONES, SALSAS } from '@/data/menu';
 import {
   CreditCard,
   Banknote,
@@ -35,6 +35,7 @@ export function PaymentScreen({ onComplete, onBack }: PaymentScreenProps) {
     bebidaCounts,
     adicionCounts,
   } = useOrder();
+  const { combos, bebidas, adiciones, salsas } = useMenu();
   const [submitting, setSubmitting] = useState(false);
   const [copiedField, setCopiedField] = useState<string | null>(null);
   const [error, setError] = useState('');
@@ -63,12 +64,12 @@ export function PaymentScreen({ onComplete, onBack }: PaymentScreenProps) {
     if (comboInstances.length > 0) {
       lines.push('*Combos:*');
       comboInstances.forEach((inst, i) => {
-        const combo = COMBOS.find((c) => c.id === inst.comboId);
+        const combo = combos.find((c) => c.id === inst.comboId);
         if (!combo) return;
         const labelIndex =
           comboInstances.filter((x, j) => x.comboId === inst.comboId && j <= i).length;
         const salsaNames = inst.salsas
-          .map((sid) => SALSAS.find((s) => s.id === sid)?.nombre)
+          .map((sid) => salsas.find((s) => s.id === sid)?.nombre)
           .filter(Boolean) as string[];
         lines.push(
           `  ${combo.nombre} #${labelIndex} - ${formatCOP(combo.precio)}` +
@@ -78,7 +79,7 @@ export function PaymentScreen({ onComplete, onBack }: PaymentScreenProps) {
     }
 
     // Bebidas
-    const bebidaLines = BEBIDAS.filter((b) => (bebidaCounts[b.id] || 0) > 0);
+    const bebidaLines = bebidas.filter((b) => (bebidaCounts[b.id] || 0) > 0);
     if (bebidaLines.length > 0) {
       lines.push('*Bebidas:*');
       bebidaLines.forEach((b) => {
@@ -87,7 +88,7 @@ export function PaymentScreen({ onComplete, onBack }: PaymentScreenProps) {
     }
 
     // Adiciones
-    const adicionLines = ADICIONES.filter((a) => (adicionCounts[a.id] || 0) > 0);
+    const adicionLines = adiciones.filter((a) => (adicionCounts[a.id] || 0) > 0);
     if (adicionLines.length > 0) {
       lines.push('*Adiciones:*');
       adicionLines.forEach((a) => {

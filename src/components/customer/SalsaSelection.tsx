@@ -1,6 +1,5 @@
-import { SALSAS } from '@/data/menu';
+import { useMenu } from '@/context/MenuContext';
 import { useOrder } from '@/context/OrderContext';
-import { COMBOS } from '@/data/menu';
 import { ProductImage } from '@/components/ProductImage';
 import { Check } from 'lucide-react';
 
@@ -10,6 +9,7 @@ interface SalsaSelectionProps {
 }
 
 export function SalsaSelection({ onNext, onBack }: SalsaSelectionProps) {
+  const { combos, salsas } = useMenu();
   const { comboInstances, setSalsaForInstance } = useOrder();
 
   const allComplete = comboInstances.every((inst) => inst.salsas.length > 0);
@@ -30,9 +30,8 @@ export function SalsaSelection({ onNext, onBack }: SalsaSelectionProps) {
       ) : (
         <div className="space-y-5">
           {comboInstances.map((inst, i) => {
-            const combo = COMBOS.find((c) => c.id === inst.comboId);
+            const combo = combos.find((c) => c.id === inst.comboId);
             if (!combo) return null;
-            // Count how many of this combo type came before this instance
             const labelIndex =
               comboInstances.filter((x, j) => x.comboId === inst.comboId && j <= i).length;
             return (
@@ -53,7 +52,7 @@ export function SalsaSelection({ onNext, onBack }: SalsaSelectionProps) {
                   </h3>
                 </div>
                 <div className="grid grid-cols-1 gap-2">
-                  {SALSAS.map((salsa) => {
+                  {salsas.map((salsa) => {
                     const checked = inst.salsas.includes(salsa.id);
                     return (
                       <button

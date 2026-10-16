@@ -1,4 +1,4 @@
-import { BEBIDAS, formatCOP } from '@/data/menu';
+import { useMenu, formatCOP } from '@/context/MenuContext';
 import { useOrder } from '@/context/OrderContext';
 import { QuantityButton } from '@/components/QuantityButton';
 import { ProductImage } from '@/components/ProductImage';
@@ -9,18 +9,21 @@ interface BebidaSelectionProps {
 }
 
 export function BebidaSelection({ onNext, onBack }: BebidaSelectionProps) {
+  const { bebidas } = useMenu();
   const { bebidaCounts, addBebida, removeBebida } = useOrder();
   const totalBebidas = Object.values(bebidaCounts).reduce((a, b) => a + b, 0);
+
+  const bebidaPrecio = bebidas.length > 0 ? bebidas[0].precio : 3000;
 
   return (
     <div className="px-4 pt-4 pb-32">
       <div className="mb-6">
         <h2 className="text-2xl font-bold text-white mb-1">Bebidas</h2>
-        <p className="text-white/40 text-sm">Todas a {formatCOP(3000)}. Opcional.</p>
+        <p className="text-white/40 text-sm">Todas a {formatCOP(bebidaPrecio)}. Opcional.</p>
       </div>
 
       <div className="grid grid-cols-2 gap-3">
-        {BEBIDAS.map((bebida, i) => {
+        {bebidas.map((bebida, i) => {
           const count = bebidaCounts[bebida.id] || 0;
           const selected = count > 0;
           return (

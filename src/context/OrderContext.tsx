@@ -13,7 +13,7 @@ import type {
   Sede,
   TipoPedido,
 } from '@/types';
-import { COMBOS, BEBIDAS, ADICIONES, SALSAS } from '@/data/menu';
+import { useMenu } from '@/context/MenuContext';
 
 interface ClienteData {
   nombre: string;
@@ -79,6 +79,7 @@ const defaultCliente: ClienteData = {
 };
 
 export function OrderProvider({ children }: { children: ReactNode }) {
+  const { combos, bebidas, adiciones, salsas } = useMenu();
   const [comboCounts, setComboCounts] = useState<Record<number, number>>({});
   const [comboInstances, setComboInstances] = useState<ComboSeleccionado[]>([]);
   const [bebidaCounts, setBebidaCounts] = useState<Record<number, number>>({});
@@ -161,13 +162,13 @@ export function OrderProvider({ children }: { children: ReactNode }) {
   const subtotal = (() => {
     let sum = 0;
     comboInstances.forEach((inst) => {
-      const combo = COMBOS.find((c) => c.id === inst.comboId);
+      const combo = combos.find((c) => c.id === inst.comboId);
       if (combo) sum += combo.precio;
     });
-    BEBIDAS.forEach((b) => {
+    bebidas.forEach((b) => {
       sum += b.precio * (bebidaCounts[b.id] || 0);
     });
-    ADICIONES.forEach((a) => {
+    adiciones.forEach((a) => {
       sum += a.precio * (adicionCounts[a.id] || 0);
     });
     return sum;
@@ -179,10 +180,10 @@ export function OrderProvider({ children }: { children: ReactNode }) {
     const items: PedidoItemInput[] = [];
 
     comboInstances.forEach((inst, index) => {
-      const combo = COMBOS.find((c) => c.id === inst.comboId);
+      const combo = combos.find((c) => c.id === inst.comboId);
       if (!combo) return;
       const salsaNames = inst.salsas
-        .map((sid) => SALSAS.find((s) => s.id === sid)?.nombre)
+        .map((sid) => salsas.find((s) => s.id === sid)?.nombre)
         .filter(Boolean) as string[];
       items.push({
         tipo: 'combo',
@@ -194,7 +195,7 @@ export function OrderProvider({ children }: { children: ReactNode }) {
       });
     });
 
-    BEBIDAS.forEach((b) => {
+    bebidas.forEach((b) => {
       const count = bebidaCounts[b.id] || 0;
       if (count > 0) {
         items.push({
@@ -207,7 +208,7 @@ export function OrderProvider({ children }: { children: ReactNode }) {
       }
     });
 
-    ADICIONES.forEach((a) => {
+    adiciones.forEach((a) => {
       const count = adicionCounts[a.id] || 0;
       if (count > 0) {
         items.push({
@@ -221,7 +222,7 @@ export function OrderProvider({ children }: { children: ReactNode }) {
     });
 
     return items;
-  }, [comboInstances, bebidaCounts, adicionCounts]);
+  }, [comboInstances, bebidaCounts, adicionCounts, combos, bebidas, adiciones, salsas]);
 
   const resetOrder = useCallback(() => {
     setComboCounts({});

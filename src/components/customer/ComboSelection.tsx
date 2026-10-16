@@ -1,4 +1,4 @@
-import { COMBOS, formatCOP } from '@/data/menu';
+import { useMenu, formatCOP } from '@/context/MenuContext';
 import { useOrder } from '@/context/OrderContext';
 import { QuantityButton } from '@/components/QuantityButton';
 import { ProductImage } from '@/components/ProductImage';
@@ -25,13 +25,14 @@ const GRUPO_LABELS: Record<string, { title: string; subtitle: string }> = {
 };
 
 export function ComboSelection({ onNext }: ComboSelectionProps) {
+  const { combos } = useMenu();
   const { comboCounts, addCombo, removeCombo } = useOrder();
   const totalCombos = Object.values(comboCounts).reduce((a, b) => a + b, 0);
 
-  const estrella = COMBOS.find((c) => c.grupo === 'estrella');
-  const snacks = COMBOS.filter((c) => c.grupo === 'snacks');
-  const bombones = COMBOS.filter((c) => c.grupo === 'bombones');
-  const temporada = COMBOS.filter((c) => c.grupo === 'temporada');
+  const estrella = combos.find((c) => c.grupo === 'estrella');
+  const snacks = combos.filter((c) => c.grupo === 'snacks');
+  const bombones = combos.filter((c) => c.grupo === 'bombones');
+  const temporada = combos.filter((c) => c.grupo === 'temporada');
 
   const renderComboCard = (combo: Combo, index: number) => {
     const count = comboCounts[combo.id] || 0;
