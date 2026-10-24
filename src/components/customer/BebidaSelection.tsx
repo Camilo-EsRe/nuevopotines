@@ -37,7 +37,7 @@ export function BebidaSelection({ onNext, onBack }: BebidaSelectionProps) {
               <ProductImage
                 src={bebida.imagen}
                 alt={bebida.nombre}
-                className={`w-16 h-16 rounded-2xl bg-gradient-to-b ${bebida.color} mb-3 shadow-lg`}
+                className={`w-24 h-24 rounded-2xl bg-gradient-to-b ${bebida.color} mb-3 shadow-lg`}
                 imgClassName="object-cover"
               />
               <h3 className="text-sm font-semibold text-white mb-1 leading-tight">

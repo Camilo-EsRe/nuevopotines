@@ -6,7 +6,7 @@ export const COMBOS: Combo[] = [
     nombre: 'Potipapa',
     descripcion: ['Papas', 'Salchicha', 'Huevo'],
     descripcionLarga:
-      'El clasico que enamora desde el primer bocado y nuestro imperdible de siempre. Una base generosa de nuestras autenticas papas artesanales, doradas y crujientes, coronadas con jugosa salchicha y un tierno huevito. Banalas en nuestra seleccion de salsas artesanales y crea tu combinacion perfecta. Simplemente irresistible!',
+      'Papas artesanales, salchicha y huevo. Banalas en tus salsas favoritas.',
     precio: 9900,
     emoji: '🥚',
     imagen: '/productos/papasola.jpg',
@@ -18,7 +18,7 @@ export const COMBOS: Combo[] = [
     nombre: 'Potisnack #1',
     descripcion: ['Papas', '1 Snack de pollo', 'Salchicha', 'Huevo'],
     descripcionLarga:
-      'Una cama de nuestras irresistibles papas artesanales, acompanadas de 1 crujiente snack de pollo, sabrosa salchicha, un tierno huevito y la libertad de mezclar tus salsas artesanales favoritas.',
+      'Papas, 1 snack de pollo, salchicha, huevo y salsas a tu eleccion.',
     precio: 13900,
     emoji: '🍗',
     imagen: '/productos/potipapa.png',
@@ -30,7 +30,7 @@ export const COMBOS: Combo[] = [
     nombre: 'Potisnack #2',
     descripcion: ['Papas', '2 Snacks de pollo', 'Salchicha', 'Huevo'],
     descripcionLarga:
-      'Para los que siempre quieren un poco mas: papas artesanales doraditas, 2 jugosos snacks de pollo, salchicha en su punto, un huevito y un bano de nuestras salsas a tu eleccion.',
+      'Papas, 2 snacks de pollo, salchicha, huevo y tus salsas.',
     precio: 15900,
     emoji: '🍗',
     imagen: '/productos/potipapa.png',
@@ -42,7 +42,7 @@ export const COMBOS: Combo[] = [
     nombre: 'Potisnack #3',
     descripcion: ['Papas', '3 Snacks de pollo', 'Salchicha', 'Huevo'],
     descripcionLarga:
-      'La experiencia completa del sabor. Disfruta de 3 deliciosos snacks de pollo sobre nuestras papas artesanales, junto a la clasica salchicha, huevito y tus salsas artesanales preferidas.',
+      'Papas, 3 snacks de pollo, salchicha, huevo y tus salsas.',
     precio: 17900,
     emoji: '🍗',
     imagen: '/productos/potipapa.png',
@@ -54,7 +54,7 @@ export const COMBOS: Combo[] = [
     nombre: 'Potibombón #1',
     descripcion: ['1 Bombón de pollo', 'Papas', 'Salchicha', 'Huevo'],
     descripcionLarga:
-      'Sacia tu antojo con 1 exquisito bombon de pollo, servido sobre nuestra base de papas artesanales recien hechas, salchicha, un huevito y el toque magico de tus salsas a eleccion.',
+      '1 bombon de pollo, papas, salchicha, huevo y salsas.',
     precio: 14900,
     emoji: '🍳',
     imagen: '/productos/bombon-pollo.jpg',
@@ -66,7 +66,7 @@ export const COMBOS: Combo[] = [
     nombre: 'Potibombón #2',
     descripcion: ['2 Bombones de pollo', 'Papas', 'Salchicha', 'Huevo'],
     descripcionLarga:
-      'Doble placer en cada bocado. 2 espectaculares bombones de pollo que se deshacen en la boca, acompanados de nuestras papas artesanales, salchicha, huevito y el sabor inigualable de nuestras salsas de la casa.',
+      '2 bombones de pollo, papas, salchicha, huevo y salsas.',
     precio: 18900,
     emoji: '🍳',
     imagen: '/productos/bombon-pollo.jpg',
@@ -78,7 +78,7 @@ export const COMBOS: Combo[] = [
     nombre: 'Potichuleta',
     descripcion: ['Chuleta de pollo', 'Papas', 'Salchicha', 'Huevo'],
     descripcionLarga:
-      'Nuestra obra maestra de temporada. Una generosa y crujiente chuleta de pechuga de pollo reposando sobre nuestras clasica papas artesanales, acompanada de salchicha, un tierno huevito y coronada con las salsas artesanales que tu elijas. Un verdadero festin en un solo plato.',
+      'Chuleta de pollo, papas, salchicha, huevo y salsas a tu eleccion.',
     precio: 17900,
     emoji: '🍂',
     imagen: '/productos/poti-chuleta.jpg',

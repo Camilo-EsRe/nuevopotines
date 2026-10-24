@@ -35,7 +35,7 @@ export function AdicionSelection({ onNext, onBack }: AdicionSelectionProps) {
                 <ProductImage
                   src={adic.imagen}
                   alt={adic.nombre}
-                  className="w-12 h-12 rounded-2xl bg-ink-700/60 flex-shrink-0"
+                  className="w-20 h-20 rounded-2xl bg-ink-700/60 flex-shrink-0"
                   imgClassName="object-cover"
                 />
                 <div>

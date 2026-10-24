@@ -32,11 +32,11 @@ export function SplashScreen({ onStart }: SplashScreenProps) {
         {/* Logo */}
         <div className="animate-scaleIn mb-6">
           <div className="relative">
-            <div className="w-28 h-28 rounded-3xl overflow-hidden shadow-gold-lg animate-float flex items-center justify-center">
+            <div className="w-56 h-32 rounded-3xl overflow-hidden shadow-gold-lg animate-float flex items-center justify-center bg-ink-800/40 px-2">
               <img
                 src="/potines.png"
                 alt="POTINES"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
               />
             </div>
             <div className="absolute -inset-2 rounded-3xl border border-gold-500/20 animate-pulseGold" />

@@ -45,11 +45,11 @@ export function ComboSelection({ onNext }: ComboSelectionProps) {
         }`}
         style={{ animationDelay: `${index * 0.08}s`, animationFillMode: 'backwards' }}
       >
-        <div className="flex items-start gap-3">
+        <div className="flex items-start gap-4">
             <ProductImage
               src={combo.imagen}
               alt={combo.nombre}
-              className="w-16 h-16 rounded-2xl flex-shrink-0 bg-ink-700/60"
+              className="w-28 h-28 rounded-2xl flex-shrink-0 bg-ink-700/60"
               imgClassName="object-cover"
             />
           <div className="flex-1">
@@ -71,7 +71,7 @@ export function ComboSelection({ onNext }: ComboSelectionProps) {
                 </span>
               ))}
             </div>
-            <p className="text-xs text-white/45 leading-relaxed mb-2.5">
+            <p className="text-xs text-white/45 leading-relaxed mb-2.5 line-clamp-1">
               {combo.descripcionLarga}
             </p>
             <p className="text-gold-400 font-bold text-base">{formatCOP(combo.precio)}</p>
@@ -144,7 +144,7 @@ export function ComboSelection({ onNext }: ComboSelectionProps) {
                 <ProductImage
                   src={estrella.imagen}
                   alt={estrella.nombre}
-                  className="w-20 h-20 rounded-2xl flex-shrink-0 border border-gold-500/30 bg-gold-500/20"
+                  className="w-32 h-32 rounded-2xl flex-shrink-0 border border-gold-500/30 bg-gold-500/20"
                   imgClassName="object-cover"
                 />
                 <div className="flex-1">
