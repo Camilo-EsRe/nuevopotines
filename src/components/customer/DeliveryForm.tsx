@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useOrder } from '@/context/OrderContext';
 import { supabase } from '@/lib/supabase';
 import { formatCOP } from '@/context/MenuContext';
+import { ConsentModal } from '@/components/customer/ConsentModal';
 import { MapPin, User, Phone, Home, Info, Check } from 'lucide-react';
 
 interface DeliveryFormProps {
@@ -9,10 +11,20 @@ interface DeliveryFormProps {
   onBack: () => void;
 }
 
+const CONSENT_KEY = 'potines_consent_accepted';
+
 export function DeliveryForm({ onNext, onBack }: DeliveryFormProps) {
   const { cliente, setCliente, tarifas, setTarifas, domicilioActual } = useOrder();
   const [loading, setLoading] = useState(true);
   const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [consentAccepted, setConsentAccepted] = useState<boolean>(
+    () => sessionStorage.getItem(CONSENT_KEY) === 'true',
+  );
+
+  const handleAcceptConsent = () => {
+    sessionStorage.setItem(CONSENT_KEY, 'true');
+    setConsentAccepted(true);
+  };
 
   useEffect(() => {
     let cancelled = false;
@@ -43,6 +55,9 @@ export function DeliveryForm({ onNext, onBack }: DeliveryFormProps) {
 
   return (
     <div className="px-4 pt-4 pb-32">
+      {!consentAccepted &&
+        createPortal(<ConsentModal onAccept={handleAcceptConsent} />, document.body)}
+
       <div className="mb-6">
         <h2 className="text-2xl font-bold text-white mb-1">Datos del domicilio</h2>
         <p className="text-white/40 text-sm">¿A dónde llevamos tu pedido?</p>
